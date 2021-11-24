@@ -43,21 +43,20 @@ app.post('/url', function (req, res) {
         redirect: 'follow'
     }
 
-    // FIRST: Call the MeaningCloud API
+    // Call the MeaningCloud API
     getMeaningCloud(requestOptions)
-
-    // SECOND: Post data back to the client side
     .then((data) => {
         res.send(data)
     })
-
+    
 })
 
 const getMeaningCloud = async (requestOptions) => {
     const response = await fetch("https://api.meaningcloud.com/sentiment-2.1", requestOptions)
     try {
-        return await response.json()
-      } catch (error) {
-        console.log("Get MeaningCloud Error:", error)
-      }
+      const data = await response.json()
+      return data
+    } catch (error) {
+      console.log(" MeaningCloud API Error:", error)
+    }
 }

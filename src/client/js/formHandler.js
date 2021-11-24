@@ -33,8 +33,12 @@ function handleSubmit(event) {
     console.log("::: Form Submitted :::")
 
     //FIRST: Post url to API to get analysis
-    let results = postURL('/url', {url:formText})
-    console.log(results)
+    postURL('/url', {url:formText})
+
+    .then((data) => {
+        document.getElementById('results').innerHTML = data.confidence
+    }) 
+
 
 
 }
