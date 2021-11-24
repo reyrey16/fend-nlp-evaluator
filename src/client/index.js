@@ -10,5 +10,3 @@ import "./styles/resets.scss"
 
 // Exporting so we can access via Client.NAME
 export { handleSubmit }
-
-console.log("CHANGE OCCURRED");

@@ -16,7 +16,6 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static('dist'))
 
-console.log(__dirname)
 console.log(`Your API key is ${process.env.API_KEY}`) 
 
 app.get('/', function (req, res) {
@@ -25,13 +24,27 @@ app.get('/', function (req, res) {
 })
 
 // designates what port the app will listen to for incoming requests
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
+app.listen(3000, function () {
+    console.log('Example app listening on port 3000!')
 })
 
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
+app.post('/url', function (req, res) {
+    console.log("POST URL: %s", req.body.url)
+    res.send({key:process.env.API_KEY})
 })
+
+/* Function to GET Meaning Cloud API Data*/
+// const postArticle = async (url) => {
+//     console.log("post article ran")
+    //Getting the weather data and saving it
+    // const response = await fetch(baseURL+zip+apiKey)
+    // try {
+    //   const data = await response.json();
+    //   return data;
+    // } catch (error) {
+    //   console.log(" GET WEATHER ERROR:", error);
+    // }
+ // }
 
 // // API call to Meaning Cloud
 // const formdata = new FormData();
