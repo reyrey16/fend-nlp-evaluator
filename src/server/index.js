@@ -5,6 +5,8 @@ const dotenv = require('dotenv').config()
 var bodyParser = require('body-parser')
 var cors = require('cors')
 const fetch = require('node-fetch')
+var FormData = require('form-data')
+const { response } = require('express')
 
 const app = express()
 app.use(cors())
@@ -17,11 +19,9 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static('dist'))
 
-console.log(`Your API key is ${process.env.API_KEY}`) 
-
+// Requests
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
-    // res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
 // designates what port the app will listen to for incoming requests
@@ -31,65 +31,33 @@ app.listen(3000, function () {
 
 app.post('/url', function (req, res) {
     // Preparing the object needed
-    let data = {
-        key : process.env.API_KEY,
-        url : req.body.url,
-        lang : "en"
-    }
+    const formdata = new FormData();
+    formdata.append("key", process.env.API_KEY);
+    formdata.append("url", req.body.url);
+    formdata.append("lang", "en"); 
+
     // Preparing the options needed
     const requestOptions = {
         method: 'POST',
-        body: data,
+        body: formdata,
         redirect: 'follow'
     }
 
-    console.log(getMeaningCloud(requestOptions))
+    // FIRST: Call the MeaningCloud API
+    getMeaningCloud(requestOptions)
 
+    // SECOND: Post data back to the client side
+    .then((data) => {
+        res.send(data)
+    })
 
 })
 
 const getMeaningCloud = async (requestOptions) => {
     const response = await fetch("https://api.meaningcloud.com/sentiment-2.1", requestOptions)
     try {
-        let results = {
-            status: response.status, 
-            body: response.json()
-        }
-        return results
-    } catch (error) {
-        console.log('MeaningCloud API error:', error)
-    }
+        return await response.json()
+      } catch (error) {
+        console.log("Get MeaningCloud Error:", error)
+      }
 }
-
-/* Function to GET Meaning Cloud API Data*/
-// const postArticle = async (url) => {
-//     console.log("post article ran")
-    //Getting the weather data and saving it
-    // const response = await fetch(baseURL+zip+apiKey)
-    // try {
-    //   const data = await response.json();
-    //   return data;
-    // } catch (error) {
-    //   console.log(" GET WEATHER ERROR:", error);
-    // }
- // }
-
-// // API call to Meaning Cloud
-// const formdata = new FormData();
-// formdata.append("key", process.env.API_KEY)
-// formdata.append("lang", "en")
-// formdata.append("txt", "YOUR TEXT HERE")
-
-// const requestOptions = {
-//   method: 'POST',
-//   body: formdata,
-//   redirect: 'follow'
-// };
-
-// const response = fetch("https://api.meaningcloud.com/sentiment-2.1", requestOptions)
-//   .then(response => ({
-//     status: response.status, 
-//     body: response.json()
-//   }))
-//   .then(({ status, body }) => console.log(status, body))
-//   .catch(error => console.log('error', error));
