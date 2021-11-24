@@ -1,9 +1,14 @@
 function handleSubmit(event) {
+    console.log("I RAN")
     event.preventDefault()
 
     // check what text was put into the form field
-    let formText = document.getElementById('name').value
-    checkForName(formText)
+    let formText = document.getElementById('url').value
+
+    if (formText == "") {
+        document.getElementById('results').innerHTML = "Please enter a valid URL"
+        return false
+    }
 
     console.log("::: Form Submitted :::")
     fetch('http://localhost:8080/test')
