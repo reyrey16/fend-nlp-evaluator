@@ -1,9 +1,14 @@
+@import 'base';
+
 header {
     grid-area: head;
     text-align: center;
+    background-color: $prussian-blue;
 
     h1 {
         font-size: 2em;
         margin: 20px 0;
+        font-family: $h1Font;
+        color: $navajo-white;
     }
 }
