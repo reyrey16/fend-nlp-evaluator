@@ -1,6 +1,5 @@
 header {
-    display: flex;
-    justify-content: center;
+    grid-area: head;
 
     h1 {
         font-size: 2em;

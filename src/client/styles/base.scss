@@ -1,15 +1,12 @@
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-size: 40px;
-}
-
-main {
-    flex: 2;
-}
-
-section {
-    max-width: 800px;
-    margin: 50px auto;
+    margin: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 5% 1fr 5%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "head head head"
+        ". main ."
+        "aside aside aside"
+        "foot foot foot";
 }
