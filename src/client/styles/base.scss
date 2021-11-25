@@ -10,12 +10,13 @@ $navajo-white: rgba(255, 224, 181, 1);
 $raw-umber: rgba(138, 101, 82, 1);
 $rich-black-fogra-29: rgba(2, 4, 15, 1);
 
-body {
+.wrapper {
     margin: 0;
     width: 100%;
+    min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas:
         "head"
         "main"
