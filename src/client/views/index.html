@@ -19,17 +19,19 @@
                 <p>
                     Have you ever wondered what was the overall tone of an article? Is it subjective, 
                     and or ironic? One way you can find out is by reading it yourself, or use this 
-                    increible tool that was created to assist you with that. Enter the URL of the article
-                    you want to be evaluated, and in a few seconds, you will know the answer. Go ahead,
-                    try it out.</p>
+                    increible tool that was created to assist you with that. 
+                </p>
+                <p>Enter the URL of the article you want to be evaluated, and in a few seconds, 
+                    you will know the answer. Go ahead, try it out.
+                </p>
                 <form class="" onsubmit="return Client.handleSubmit(event)">
                     <input id="url" type="text" name="input" value="" placeholder="url">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                    <input class="btn-blue btn" type="submit" name="" value="ANALYZE" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             </section>
 
-            <section>
-                <strong>Form Results:</strong>
+            <section id="resultsSection">
+                <strong>Analysis Report:</strong>
                 <div id="results"></div>
             </section>
         </main>

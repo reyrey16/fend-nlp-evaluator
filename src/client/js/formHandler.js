@@ -68,6 +68,7 @@ function handleSubmit(event) {
 
     console.log("::: Form Submitted :::")
     document.getElementById('results').innerHTML = "PROCESSING ARTICLE, PLEASE WAIT..."
+    document.getElementById('resultsSection').style.display = "block"
 
     //FIRST: Post url to API to get analysis
     postURL('/url', {url:formText})
