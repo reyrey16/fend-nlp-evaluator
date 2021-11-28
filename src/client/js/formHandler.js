@@ -51,7 +51,7 @@ function handleSubmit(event) {
       let results = ""
       // If API call is successfull
       if (data.status.code === "0") {
-        results = sentenceCreator(data)
+        results = Client.sentenceCreator(data)
       }
       else {
         results = "Invalid URL, please try again"
