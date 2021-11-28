@@ -57,7 +57,16 @@ function handleSubmit(event) {
         results = "Invalid URL, please try again"
       }
       document.getElementById('results').innerHTML = results
-    }) 
+    })
+    
+    // IF IT ERRORS OUT: Catch the error here
+    .catch((e) => {
+      if (e.message.includes("NetworkError")) {
+        document.getElementById('results').innerHTML = "It seems you are not connected to the internet. Please check your internet connection and try again"
+      } else {
+        document.getElementById('results').innerHTML = e.message
+      }
+    })
 }
 
 export { handleSubmit }
