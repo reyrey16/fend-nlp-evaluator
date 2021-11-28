@@ -18,7 +18,12 @@ const postURL = async (url = '', data = {}) => {
   }
 }
 
-
+/**
+* @description Handles the submit event and updates the webpage dynamically
+* @param {event} event
+* @returns {boolean} false if invalid URL, other then that, it should dynamically
+*                    update the webpage with the returned data
+*/
 function handleSubmit(event) {
     event.preventDefault()
 
@@ -32,6 +37,7 @@ function handleSubmit(event) {
     }
 
     console.log("::: Form Submitted :::")
+    // Add default text while the API is gathering the data
     document.getElementById('results').innerHTML = "PROCESSING ARTICLE, PLEASE WAIT..."
     document.getElementById('resultsSection').style.display = "block"
     document.getElementById('url').value = ""

@@ -1,3 +1,8 @@
+/**
+* @description Creates a sentence based on the input data
+* @param {JSON} data
+* @returns {string} A string created using various keys from the data JSON
+*/
 function sentenceCreator(data){
     // 1. confidence, represents the confidence associated with the sentiment analysis 
     //    performed on the text. Its value is an integer number in the 0-100 range.
