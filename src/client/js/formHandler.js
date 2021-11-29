@@ -30,10 +30,18 @@ function handleSubmit(event) {
     // check what text was put into the form field
     let formText = document.getElementById('url').value
 
+    // REGEX test for URL
+    // Borrowed from https://www.regextester.com/94502
+    const pattern = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm
+
     // validate that the input isn't blank
     if (formText == "") {
-        document.getElementById('results').innerHTML = "Please enter a valid URL"
+        document.getElementById('results').innerHTML = "URL can't be blank, please try again"
         return false
+    }
+    else if (!pattern.test(formText)) {
+      document.getElementById('results').innerHTML = "Invalid URL, please try again"
+      return false
     }
 
     console.log("::: Form Submitted :::")
@@ -54,7 +62,7 @@ function handleSubmit(event) {
         results = Client.sentenceCreator(data)
       }
       else {
-        results = "Invalid URL, please try again"
+        results = "Invalid URL results, please try again"
       }
       document.getElementById('results').innerHTML = results
     })
